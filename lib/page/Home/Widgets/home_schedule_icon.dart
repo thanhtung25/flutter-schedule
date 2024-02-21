@@ -3,11 +3,10 @@ class HomeScheduleIcon extends StatelessWidget{
   const HomeScheduleIcon ({super.key});
   @override
   Widget build(BuildContext context){
-    Size size = MediaQuery.sizeOf(context);
-    return Container(
-      width: size.width / 1.8,
+    return SizedBox(
+      width: 30,
       child: Image.asset(
-        'assets/images/schedule/rong.jpeg',
+        'assets/images/icons/icon_arrow_left.png',
         fit: BoxFit.cover,
         ),
     );
