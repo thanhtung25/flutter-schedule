@@ -1,9 +1,22 @@
 
+
+import 'package:appschedule/page/bottom_custom/buttom_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class HomePafe extends StatelessWidget{
-  const HomePafe({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context){
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget{
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -56,7 +69,12 @@ class HomePafe extends StatelessWidget{
                 width: double.infinity,
                 margin: const EdgeInsets.all(50),
                 child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context)=>const ButtomCustom())
+                      );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:const Color(0xffFFA013),
                     foregroundColor: Colors.white,
