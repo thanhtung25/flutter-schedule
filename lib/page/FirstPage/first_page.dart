@@ -1,5 +1,4 @@
 
-
 import 'package:appschedule/page/bottom_custom/buttom_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -15,21 +14,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class FirstPage extends StatelessWidget{
+class FirstPage extends StatefulWidget{
   const FirstPage({super.key});
+
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+
+class _FirstPageState extends State<FirstPage> {
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime _selectedDay = DateTime.now();
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         backgroundColor:const Color(0xffFFBA54),
-        leading: IconButton(
-          onPressed: () {},
-            icon: const Icon(
-              Icons.arrow_left,
-              color: Colors.white,
-              size: 40,
-            ),
-        ),
         title:const Text(
           'Date',
           style: TextStyle(
@@ -41,25 +42,29 @@ class FirstPage extends StatelessWidget{
       ),
       body:  Column(
         children: [
-          // const Padding(
-          //   padding: EdgeInsets.all(20),
-          //   child: Text(
-          //     'Option Date',
-          //     style: TextStyle(
-          //       fontSize: 24,
-          //       fontFamily: "Times New Romans",
-          //       fontWeight: FontWeight.w500,
-          //     ),
-          //     ),
-          // ),
           SizedBox(
             width: 300,
             child: Image.asset('assets/images/schedule/lich.png')
           ),
+
           TableCalendar(
             firstDay: DateTime.utc(2010, 10, 16),
             lastDay: DateTime.utc(2030, 3, 14),
-            focusedDay: DateTime.now(),
+            focusedDay: _focusedDay,
+            calendarFormat: _calendarFormat,
+            onFormatChanged: (format){
+              setState(() {
+                _calendarFormat = format;
+              });
+            },
+            selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
+            onDaySelected: (selectedDay,focusedDay) {
+              setState(() {
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay;
+              });
+            },
+            
           ),
           Expanded(
             child:  Align(
