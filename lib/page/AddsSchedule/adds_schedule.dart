@@ -1,31 +1,19 @@
 
-import 'package:appschedule/page/bottom_custom/buttom_custom.dart';
+import 'package:appschedule/page/Home/home_page.dart';
+import 'package:appschedule/page/Home/widgets/TableCalendarApp.dart';
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context){
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: FirstPage(),
-    );
-  }
-}
 
-class FirstPage extends StatefulWidget{
-  const FirstPage({super.key});
+
+class AddsSchedule extends StatefulWidget{
+  const AddsSchedule({super.key});
 
   @override
-  State<FirstPage> createState() => _FirstPageState();
+  State<AddsSchedule> createState() => _FirstPageState();
 }
 
 
-class _FirstPageState extends State<FirstPage> {
-  CalendarFormat _calendarFormat = CalendarFormat.month;
-  DateTime _focusedDay = DateTime.now();
-  DateTime _selectedDay = DateTime.now();
+class _FirstPageState extends State<AddsSchedule> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -47,25 +35,7 @@ class _FirstPageState extends State<FirstPage> {
             child: Image.asset('assets/images/schedule/lich.png')
           ),
 
-          TableCalendar(
-            firstDay: DateTime.utc(2010, 10, 16),
-            lastDay: DateTime.utc(2030, 3, 14),
-            focusedDay: _focusedDay,
-            calendarFormat: _calendarFormat,
-            onFormatChanged: (format){
-              setState(() {
-                _calendarFormat = format;
-              });
-            },
-            selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
-            onDaySelected: (selectedDay,focusedDay) {
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay;
-              });
-            },
-            
-          ),
+          const TableCalendarApp(),
           Expanded(
             child:  Align(
               alignment: Alignment.bottomCenter,
@@ -77,7 +47,7 @@ class _FirstPageState extends State<FirstPage> {
                   onPressed: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context)=>const ButtomCustom())
+                      MaterialPageRoute(builder: (context)=>const HomePage())
                       );
                   },
                   style: ElevatedButton.styleFrom(

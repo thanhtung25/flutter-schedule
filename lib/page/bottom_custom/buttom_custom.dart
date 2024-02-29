@@ -12,10 +12,10 @@ class ButtomCustom extends StatefulWidget{
 class _ButtomCustomState extends State<ButtomCustom> {
     List<BottomNavigationBarItem> listItem = [
     const BottomNavigationBarItem(
-      icon: Icon(Icons.home),label: 'Home',
+      icon: Icon(Icons.home),label: 'Home',backgroundColor: Colors.black,
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.person),label: 'Profile',
+      icon: Icon(Icons.person),label: 'Profile',backgroundColor: Colors.black,
     ),
   ];
   
@@ -23,14 +23,31 @@ class _ButtomCustomState extends State<ButtomCustom> {
     const HomePage(),
     const ProfilePage()
   ];
-  int activePage = 0;
-
-
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {  
+    setState(() {  
+      _selectedIndex = index;  
+    });  
+  } 
+  
   @override
   Widget build(BuildContext context){
     return Scaffold(
       extendBody: true,
-      body: listPage[activePage],
+      body: listPage[_selectedIndex],
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xffFF9E74),
+        onPressed: () {
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        elevation: 2.0,
+        child:  const Icon(
+          Icons.add,
+          size: 30,
+          color: Colors.white,
+        ),
+      ) ,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,   
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
@@ -44,15 +61,15 @@ class _ButtomCustomState extends State<ButtomCustom> {
             topRight: Radius.circular(20.0),
           ),
           child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.black,
+            unselectedItemColor: Colors.black,
             items: listItem,
-            onTap: (index) {
-              setState(() {
-                activePage = index;
-              });
-            },
+            onTap: _onItemTapped,
           ),
         ),
-      ),     
+      ),  
+
     );
   }
 }
