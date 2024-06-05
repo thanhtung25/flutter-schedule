@@ -29,8 +29,19 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   table_calendar: ^3.1.0
+  #calendar
+
+  #intl
+  intl: ^0.19.0
   flutter:
     sdk: flutter
+  firebase_auth: ^4.17.6
+  firebase_database:
+  firebase_core:
+  cloud_firestore: ^4.15.8
+  http: ^1.2.0
+  random_string: ^2.3.1
+  fluttertoast: ^8.2.5
 
 
   # The following adds the Cupertino Icons font to your application.

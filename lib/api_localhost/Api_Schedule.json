@@ -1,0 +1,20 @@
+{
+    "Schedule": [
+        {
+            "date": "05-05-2002",
+            "fromTime": "12:00",
+            "toTime":"16:00",
+            "title": "add Title",
+            "alaram": true,
+            "id": "1"
+        },
+        {
+            "date": "05-05-2002",
+            "fromTime": "12:00",
+            "toTime":"16:00",
+            "title": "add Title",
+            "alaram": true,
+            "id": "2"
+        }
+    ]
+}
