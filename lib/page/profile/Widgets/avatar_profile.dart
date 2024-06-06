@@ -1,10 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class AvatarProfile extends StatelessWidget{
   const AvatarProfile({super.key});
   @override
   Widget build(BuildContext context){
-    return const Expanded(
+    return  Expanded(
       flex: 1,
       child: Column(
         mainAxisAlignment:MainAxisAlignment.center,
@@ -12,13 +13,32 @@ class AvatarProfile extends StatelessWidget{
               CircleAvatar(
                 backgroundColor:  Colors.white,
                 radius: 60,
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage('assets/images/schedule/avatar.jpeg'),
-                ),
+                // child: CircleAvatar(
+                //   radius: 50,
+                //   backgroundImage: AssetImage('assets/images/schedule/avatar.jpeg'),
+                // ),
+                child: IconButton(
+                  onPressed: (){}, 
+                  icon: ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl: 'https://reqres.in/img/faces/5-image.jpg',
+                        width: 100,
+                        height: 100,
+                        fit:BoxFit.fitHeight,
+                        placeholder: (context, url) => const CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 150,
+                        ),
+                        errorWidget: (context, url, error) => Container(
+                          color: Colors.black12,
+                          child: const Icon(Icons.error, color: Colors.red, size: 15,), 
+                          ),
+                        ),
+                    ),
+                  )
               ),
-              SizedBox(height: 10,),
-              Text(
+              const SizedBox(height: 10,),
+              const Text(
                 'Thanh Tung',
                 style: TextStyle(
                   fontFamily: 'Times New Roman',

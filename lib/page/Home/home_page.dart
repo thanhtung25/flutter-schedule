@@ -3,8 +3,10 @@
 import 'package:appschedule/fire_base/database.dart';
 import 'package:appschedule/page/AddsSchedule/adds_schedule.dart';
 import 'package:appschedule/page/profile/profile_page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HomePage extends StatefulWidget{
@@ -291,9 +293,25 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(builder: (context)=>const ProfilePage())
                       );
                     },
-                    icon: const CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage('assets/images/schedule/avatar.jpeg'),
+                    // icon: const CircleAvatar(
+                    //   radius: 30,
+                    //   backgroundImage: AssetImage('assets/images/schedule/avatar.jpeg'),
+                    // ),
+                    icon: ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl: 'https://reqres.in/img/faces/5-image.jpg',
+                        width: 100,
+                        height: 100,
+                        fit:BoxFit.fitHeight,
+                        placeholder: (context, url) => const CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 150,
+                        ),
+                        errorWidget: (context, url, error) => Container(
+                          color: Colors.black12,
+                          child: const Icon(Icons.error, color: Colors.red, size: 15,), 
+                          ),
+                        ),
                     ),
                   ),
                 ),
@@ -379,8 +397,8 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color(0xffFF9E74),
         onPressed: () {
           Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const AddsSchedule())
+             context,
+             MaterialPageRoute(builder: (context) => const AddsSchedule())
           );
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
@@ -428,7 +446,8 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context)=>const ProfilePage())
-                );
+                 );
+                //context.go('/profile');
               },
             ),
           ],

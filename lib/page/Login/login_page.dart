@@ -5,6 +5,7 @@ import 'package:appschedule/page/Login/dialog/msg_dialog.dart';
 import 'package:appschedule/page/Login/register_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({super.key});
@@ -132,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 60,
                     child: FloatingActionButton(
                       backgroundColor:const Color(0xffFF9E74),
-                      onPressed: _onSignUpClicked,
+                      onPressed: _onSignINClicked,
                       child:const Text(
                         'Login',
                         style: TextStyle(
@@ -177,13 +178,14 @@ class _LoginPageState extends State<LoginPage> {
 
     );
   }
-  void _onSignUpClicked(){
+  void _onSignINClicked(){
   String email = _emailControler.text;
   String pass = _passControler.text;
   LoadingDialog.showLoadingDiglog(context, "Loading... ");
   authBloc.signIn(email, pass, (){
     LoadingDialog.hideLoadingDialog(context);
-     Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+    //Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+    context.go('/homepage');
   }, (msg) {
     LoadingDialog.hideLoadingDialog(context);
     MsgDialog.showMsgDialog(context, "Sign-In", msg);
