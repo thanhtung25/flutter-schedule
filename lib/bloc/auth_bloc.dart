@@ -5,21 +5,17 @@ import 'package:appschedule/fire_base/fie_base_auth.dart';
 
 class AuthBloc{
   final _firAuth = FireAuth();
-
   final StreamController _nameControler =  StreamController();
   final StreamController _emailControler =  StreamController();
   final StreamController _passControler =  StreamController();
   final StreamController _phoneControler =  StreamController();
-
   Stream get nameStream => _nameControler.stream;
   Stream get emailStream => _emailControler.stream;
   Stream get passStream => _passControler.stream;
   Stream get phoneStream => _phoneControler.stream;
-
-
   bool isValid(String name, String email, String pass, String phone){
     if(name == null || name.length == 0){
-      _nameControler.sink.addError('Nhập tên');
+      _nameControler.sink.addError('Введите имя');
       return false;
     }
     _nameControler.sink.add("");
@@ -41,10 +37,8 @@ class AuthBloc{
       return false;
     }
     _passControler.sink.add("");
-
     return true;
   }
-
   void signUp(String email, String pass, String phone, String name,Function onSuccess,Function(String) onSignUpError){
     _firAuth.signUp(email, pass, name, phone,onSuccess, onSignUpError);
   }
